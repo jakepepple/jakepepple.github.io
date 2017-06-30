@@ -384,7 +384,9 @@ _.some = function(collection, action){
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 _.reduce = function(collection, func, seed){
+    
     let previousResult;
+    
     let slicedCollection = collection.slice(1);
     if(seed === undefined){
       seed = collection[0];

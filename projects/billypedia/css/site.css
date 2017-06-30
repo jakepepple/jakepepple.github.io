@@ -1,0 +1,114 @@
+body {
+    background: rgb(121, 134, 155);
+    color: rgb(45, 45, 45);
+    padding: 10px;
+    font-family: trebuchet MS, sans-serif;
+}
+
+header {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+ul {
+    background: rgb(46, 92, 132);
+    border-radius: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+li {
+    font-family: helvetica;
+    color: rgb(208, 220, 244);
+    font-style: italic;
+    /*background: rgb(150, 27, 74);*/
+    
+}
+
+
+[id=all-contents] {
+    max-width: 800px;
+    margin: auto;
+}
+
+
+/* navigation menu */
+
+nav {
+    background: rgb(46, 92, 132);
+    margin: 0 auto;
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+nav header {
+    display: flex;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    flex: 1;
+}
+
+nav ul {
+    -moz-padding-start: 0;
+    -webkit-padding-start: 0;
+    list-style-image: none;
+    background: rgb(46, 92, 132);
+}
+
+nav li {
+    display: inline-block;
+    padding: 0 10px;
+    font-size: 1.2em;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* main container area beneath menu */
+
+main {
+    background: rgb(138, 206, 179);
+    display: flex;
+    border-radius: 10px;
+}
+
+[class=sidebar] {
+    margin-right: 10px;
+    padding: 10px;
+}
+
+[class=sidebar] img {
+    width: 200px;
+    margin-top: 20px;
+}
+
+[class=content] {
+    flex: 1;
+    padding: 4px;
+    padding-top: 0;
+    margin-right: 10px;
+}
+
+[class=discography] header {
+    font-size: 1.25em;
+}
+
+#section-praise {
+    color: rgb(208, 220, 244);
+    background: rgb(46, 92, 132);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 25px;
+    font-family: trebuchet MS, sans-serif;
+    ;
+}
+
+#image-billy {
+    border: 2px solid;
+    border-color: rgba(255, 255, 255, 1);
+    cursor: pointer; cursor: hand;
+}
