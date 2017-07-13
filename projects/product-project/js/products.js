@@ -1,7 +1,7 @@
 /* global $ _ */
 
-$(function () {
-  $.getJSON('../product-project/data/product.json', function(product){
+$('document').ready(function () {
+  $.getJSON('data/product.json', function(product){
       
    // ALL YOUR CODE GOES BELOW HERE //
     $('<div>').addClass('main-div').
@@ -25,34 +25,29 @@ $(function () {
    
     
       
-      $('#table-body').append($('<tr>').addClass(product.type).attr('id', index)).
-      append($('<td>').addClass(product.type).attr('id', 'thumb' + index).attr('index', index).css('width', '25%').append($('<img>').css('left', '25px').attr('src', $imgThumb).addClass('phone-image'))).
-      append($('<td>').addClass(product.type).attr('id', 'desc' + index).attr('index', index).css('width', '50%').text(product.desc)).
-      append($('<td>').addClass(product.type).attr('id', 'price' + index).attr('index', index).css('padding-left', '25px').css('width', '25%').text(product.price.toFixed(2))).append
-        ($('<div>').addClass('modal').attr('id', 'modal' + index).
+      $('#table-body').append($('<tr>').addClass(product.type).attr('id', product.id)).
+      append($('<td>').addClass(product.type).attr('id', 'thumb' + product.id).attr('index', product.id).css('width', '25%').append($('<img>').css('left', '25px').attr('src', $imgThumb).addClass('phone-image'))).
+      append($('<td>').addClass(product.type).attr('id', 'desc' + product.id).attr('index', product.id).css('width', '50%').text(product.desc)).
+      append($('<td>').addClass(product.type).attr('id', 'price' + product.id).attr('index', product.id).css('padding-left', '25px').css('width', '25%').text(product.price.toFixed(2))).append
+        ($('<div>').addClass('modal').attr('id', 'modal' + product.id).
         append($('<button>').addClass('close').text('Close')).
         append($('<header>').text(product.desc)).
         append($('<header>').text(product.price.toFixed(2)).css('font-style', 'italic')).
         append('<div>').addClass('modal-content').
         
         append($('<img>').addClass('modal-img').attr('src', $modalImg)).
-        append($('<ul>').attr('id', 'features-list' + index)));
+        append($('<ul>').attr('id', 'features-list' + product.id)));
         
       _.forEach(product.specs, function(spec){
         var specli = $('<li>').text(spec);
-        $('#features-list' + index).append(specli);
+        $('#features-list' + product.id).append(specli);
       });
       
     if(product.stock <= 10){
-      $('<p>').text('Only ' + product.stock + ' left in stock!').css('color', 'red').css('font-weight', 'bold').appendTo('#price' + index);
+      $('<p>').text('Only ' + product.stock + ' left in stock!').css('color', 'red').css('font-weight', 'bold').appendTo('#price' + product.id);
     }
     
-    });
-    }
-    dataCollection(product);
-  // MODAL FUNCTIONALITY
-  
-  $('td').click(function(event){
+     $('td').click(function(event){
  
       $('#modal' + $(event.currentTarget).attr('index')).css('display', 'block');
       
@@ -64,6 +59,11 @@ $(function () {
       
     
   });
+    
+    });
+    }
+    dataCollection(product);
+
   
   
   // SEARCH BAR
@@ -140,6 +140,7 @@ $(function () {
     }
      $('tr').remove();
      $('td').remove();
+     $('.modal').remove();
       
       if(event.currentTarget.value === 'cost-ascending'){
         $('#sort-select').attr('value', event.currentTarget.value);
@@ -203,6 +204,7 @@ $(function () {
     $('tr').hide();
     var getInput = $('#search-box')[0].value;
     var matches = search(product, getInput);
+    
     if(matches.length === 0){
       alert('No items found for that search!');
       $('td').show();
@@ -211,12 +213,43 @@ $(function () {
     } else {
       $('td').remove();
       $('tr').remove();
-    dataCollection(matches);
+      $('.modal').remove();
     }
+    if($('#sort-select').attr('value') !== 'no-sort'){
+      matches = search(productCopy, getInput);
+      
+    } 
+    
+   dataCollection(matches);
+    
+    if ($('#dropdown').attr('value') !== 'all'){
+     $('td').hide();
+    $('tr').hide();
+    $('.' + $('#dropdown').attr('value')).show();
+    }
+    
+    
+     
+    
+    
+    
    
   });
   
+    // MODAL FUNCTIONALITY
   
+  $('td').click(function(event){
+ console.log(event.currentTarget);
+      $('#modal' + $(event.currentTarget).attr('index')).css('display', 'block');
+      
+    });
+  
+  $('.close').click(function(event){
+
+      $('.modal').css('display', 'none');
+      
+    
+  });
   
   // ALL YOUR CODE GOES ABOVE HERE //
   });
